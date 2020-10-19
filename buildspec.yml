@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install -g hexo-cli
+      - npm install hexo-generator-sitemap --save
+      - npm install
+      - apt-get update
+      - apt-get install -y awscli
+
+  build:
+    commands:
+      - hexo generate
+
+  post_build:
+    commands:
+      - cd public/ && aws s3 sync . "put-your-s3-link-here"
