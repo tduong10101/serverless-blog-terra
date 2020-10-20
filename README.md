@@ -1,12 +1,3 @@
----
-title: Terraform-AWS serverless blog
-date: 2020-10-19 22:53:49
-tags:
-    - aws
-    - hexo
-    - serverless
-    - terraform
----
 ![](https://github.com/tduong10101/serverless-blog-terra/blob/master/HighlevelDesign.jpg)
 
 I'm learning Terraform at the moment. I think this is a good hand-on side project for me. The provided terraform code will spin up a github repo, a codebuild project and a s3 bucket to host a static blog (blue box in the flow chart above). I figure people might not want to use cloudfront or route 53, so I left them out. 
