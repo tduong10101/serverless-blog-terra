@@ -15,4 +15,4 @@ phases:
 
   post_build:
     commands:
-      - cd public/ && aws s3 sync . "put-your-s3-link-here"
+      - cd public/ && aws s3 sync . s3://<put-your-s3-bucket-name-here>

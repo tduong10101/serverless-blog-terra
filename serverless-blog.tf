@@ -70,7 +70,7 @@ resource "aws_iam_role" "codebuild_role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "example" {
+resource "aws_iam_role_policy" "blog_iam_role" {
   role = aws_iam_role.codebuild_role.name
 
   policy = <<POLICY
@@ -145,3 +145,14 @@ resource "aws_codebuild_source_credential" "github_cred" {
   server_type = "GITHUB"
   token       = var.github_token
 }
+
+output "github_clone_url" {
+  value = github_repository.web_repo.http_clone_url
+}
+output "s3_bucket_name" {
+  value = aws_s3_bucket.blog_bucket.bucket
+}
+output "website_endpoint" {
+  value = "http://${aws_s3_bucket.blog_bucket.website_endpoint}"
+}
+
