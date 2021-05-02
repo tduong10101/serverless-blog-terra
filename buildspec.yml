@@ -3,11 +3,12 @@ version: 0.2
 phases:
   install:
     commands:
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update
+      - apt-get install -y awscli
       - npm install -g hexo-cli
       - npm install hexo-generator-sitemap --save
       - npm install
-      - apt-get update
-      - apt-get install -y awscli
 
   build:
     commands:
