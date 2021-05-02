@@ -131,6 +131,7 @@ resource "aws_codebuild_project" "blog_codebuild" {
   }
 }
 
+
 resource "github_repository" "web_repo"{
     name = var.site_name
     description = "serverless blog"
@@ -145,6 +146,20 @@ resource "aws_codebuild_source_credential" "github_cred" {
   server_type = "GITHUB"
   token       = var.github_token
 }
+
+resource "github_repository_webhook" "repo_webhook" {
+  active     = true
+  events     = ["push"]
+  repository = github_repository.web_repo.name
+
+  configuration {
+    url          = aws_codebuild_webhook.codebuild_webhook.payload_url
+    secret       = aws_codebuild_webhook.codebuild_webhook.secret
+    content_type = "json"
+    insecure_ssl = false
+  }
+}
+
 
 output "github_clone_url" {
   value = github_repository.web_repo.http_clone_url
